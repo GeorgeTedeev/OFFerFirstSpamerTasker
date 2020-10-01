@@ -1,9 +1,8 @@
 package com.project.offer.firstspamertasker.entities;
 
 
-import org.springframework.stereotype.Component;
+import java.io.Serializable;
 
-@Component
 public class SpamTask {
 
     private String spamTaskTheme;
@@ -31,5 +30,13 @@ public class SpamTask {
 
     public void setSpamTaskText(String spamTaskText) {
         this.spamTaskText = spamTaskText;
+    }
+
+    @Override
+    public String toString() {
+        return "SpamTask{" +
+                "spamTaskTheme='" + spamTaskTheme + '\'' +
+                ", spamTaskText='" + spamTaskText + '\'' +
+                '}';
     }
 }

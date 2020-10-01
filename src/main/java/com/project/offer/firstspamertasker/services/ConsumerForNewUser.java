@@ -17,7 +17,7 @@ public class ConsumerForNewUser {
     @Autowired
     private PostTaskService postTaskService;
 
-    @KafkaListener(topics = "${spring.kafka.newUserTopic}", groupId = "${spring.kafka.groupId}")
+    @KafkaListener(topics = "${spring.kafka.newUserTopic}", groupId = "${spring.kafka.groupId}", containerFactory = "kafkaListenerContainerFactoryForUser")
     public void receive(@Payload User user) {
         postTaskService.sendTaskForOneUser(user);
     }

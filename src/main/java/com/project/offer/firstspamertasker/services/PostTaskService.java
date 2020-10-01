@@ -50,6 +50,8 @@ public class PostTaskService {
         try {
             userRepository.save(user);
             numberOfSpamerSender = balancerService.getNumberOfSpamerSender(user.getId());
+            System.out.println("---------------------------------------------");
+            System.out.println(spamTask);
             producerService.send(new SpamTaskWithEmailAndNumberOfSpamerSender(spamTask, user.getLogin(), numberOfSpamerSender));
         }
         catch(OptimisticLockException e){

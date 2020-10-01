@@ -13,8 +13,9 @@ public class ConsumerForNewTaskForAllUsersService {
     @Autowired
     private PostTaskService postTaskService;
 
-    @KafkaListener(topics = "${spring.kafka.taskerTopic}", groupId = "${spring.kafka.groupId}")
+    @KafkaListener(topics = "${spring.kafka.taskerTopic}", groupId = "${spring.kafka.groupId}", containerFactory = "kafkaListenerContainerFactoryForSpamTask")
     public void receive(@Payload SpamTask spamTask) {
+        System.out.println(spamTask);
         postTaskService.setSpamTask(spamTask);
         postTaskService.sendTaskForAllUsers();
     }
